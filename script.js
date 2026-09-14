@@ -74,7 +74,10 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { 
+  rootMargin: '0px 0px -60px 0px',
+  threshold: 0.15 
+});
 
 revealEls.forEach(el => revealObserver.observe(el));
 
@@ -118,3 +121,31 @@ filterBtns.forEach(btn => {
     });
   });
 });
+
+
+
+
+/* ---------- 3D Hero Tilt Effect للكمبيوتر ---------- */
+const heroFigure = document.querySelector('.hero-figure');
+const figureFrame = document.querySelector('.figure-frame');
+
+if (heroFigure && figureFrame && window.innerWidth > 900) {
+  heroFigure.addEventListener('mousemove', (e) => {
+    const rect = heroFigure.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    // إيقاف الـ animation العادي مؤقتاً أثناء تحريك الماوس
+    figureFrame.style.animation = 'none';
+    figureFrame.style.transform = `rotateY(${x * 0.08}deg) rotateX(${-y * 0.08}deg) translateY(-4px)`;
+  });
+
+  heroFigure.addEventListener('mouseleave', () => {
+    figureFrame.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+    figureFrame.style.animation = 'float3D 6s ease-in-out infinite alternate';
+  });
+}
+
+
+
+
