@@ -75,8 +75,8 @@ const revealObserver = new IntersectionObserver((entries) => {
     }
   });
 }, { 
-  rootMargin: '0px 0px -60px 0px',
-  threshold: 0.15 
+  rootMargin: '0px 0px -20px 0px',
+  threshold: 0.02 
 });
 
 revealEls.forEach(el => revealObserver.observe(el));
@@ -99,7 +99,7 @@ const counterObserver = new IntersectionObserver((entries) => {
     requestAnimationFrame(tick);
     counterObserver.unobserve(el);
   });
-}, { threshold: 0.4 });
+}, { threshold: 0.2 });
 
 counters.forEach(el => counterObserver.observe(el));
 
@@ -122,9 +122,6 @@ filterBtns.forEach(btn => {
   });
 });
 
-
-
-
 /* ---------- 3D Hero Tilt Effect للكمبيوتر ---------- */
 const heroFigure = document.querySelector('.hero-figure');
 const figureFrame = document.querySelector('.figure-frame');
@@ -135,7 +132,6 @@ if (heroFigure && figureFrame && window.innerWidth > 900) {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     
-    // إيقاف الـ animation العادي مؤقتاً أثناء تحريك الماوس
     figureFrame.style.animation = 'none';
     figureFrame.style.transform = `rotateY(${x * 0.08}deg) rotateX(${-y * 0.08}deg) translateY(-4px)`;
   });
@@ -145,7 +141,3 @@ if (heroFigure && figureFrame && window.innerWidth > 900) {
     figureFrame.style.animation = 'float3D 6s ease-in-out infinite alternate';
   });
 }
-
-
-
-
